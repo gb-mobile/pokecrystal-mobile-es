@@ -121,10 +121,10 @@ DoMysteryGift:
 	ret
 
 .String_PressAToLink_BToCancel:
-	db   "Press A to"
-	next "link IR-Device"
-	next "Press B to"
-	next "cancel it."
+	db   "Pulsa A para"
+	next "enlace IR."
+	next "Pulsa B para"
+	next "cancelar."
 	db   "@"
 
 .Text_LinkCanceled:
@@ -1483,10 +1483,10 @@ PrintTextAndExit_JP:
 	ret
 
 String_PressAToLink_BToCancel_JP:
-	db   "Press A to"
-	next "link IR-Device"
-	next "Press B to"
-	next "cancel it."
+	db   "Pulsa A para"
+	next "enlace IR."
+	next "Pulsa B para"
+	next "cancelar."
 	db   "@"
 
 Text_ReceivedCard:
