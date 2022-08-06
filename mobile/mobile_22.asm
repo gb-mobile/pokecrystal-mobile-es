@@ -1385,7 +1385,7 @@ Function89915:
 	ret
 
 Unknown_89942:
-	db $24, $25, $26, $27, $28, $29, $2a, $2b;$24, $25, $26, " ", $27, $28, $29, $2a
+	db  $25, $26, $27, $28, $29, $2a, $2b ;$24, $25, $26, " ", $27, $28, $29, $2a ; Changed read different tile start for NO. TELEFONO for Spanish translation
 ;Unknown_8994a:
 ;	db $24, $27, $29, $ff
 
@@ -1409,7 +1409,7 @@ Function8994e:
 
 Function89962:
 	push bc
-	ld c, $4
+	ld c, $5 ; $4 Changed to fit in 'NOMBRE' for Spanish translation
 	ld b, $20
 .asm_89967
 	ld a, b
