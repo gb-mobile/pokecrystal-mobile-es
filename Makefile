@@ -92,7 +92,7 @@ endif
 
 pokecrystal.gbc: $(crystal_obj) pokecrystal.link
 	$(RGBLINK) -n pokecrystal.sym -m pokecrystal.map -l pokecrystal.link -o $@ $(crystal_obj)
-	$(RGBFIX) -Cjv -i BXTS -k 01 -l 0x33 -m 0x10 -p 0 -r 5 -t PM_CRYSTAL $@
+	$(RGBFIX) -Cjv -i BXTE -k 01 -l 0x33 -m 0x10 -p 0 -r 5 -t PM_CRYSTAL $@
 	tools/sort_symfile.sh pokecrystal.sym
 
 pokecrystal11.gbc: $(crystal11_obj) pokecrystal.link
