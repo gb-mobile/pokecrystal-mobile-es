@@ -538,6 +538,8 @@ Mobile12_Bin2Dec:
 	db "7@"
 	db "8@"
 	db "9@"
+	db "A@"
+	db "D@"	
 
 MobileProfileString:         db "  Mobile Profile@"
 MobileString_Gender:         db "Gender@"
@@ -1384,7 +1386,7 @@ Function48ab5: ; Zip code menu controls
 	pop af
 	ld b, a
 	and $f
-	cp $9
+	cp $b
 	ld a, b
 	jr c, .asm_48b9a
 	and $f0
