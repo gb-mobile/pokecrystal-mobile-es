@@ -42,11 +42,11 @@ PlaceDiplomaOnScreen:
 	db "@"
 
 .Certification:
-	db   "This certifies"
-	next "that you have"
-	next "completed the"
-	next "new #DEX."
-	next "Congratulations!"
+	db   "Esto certifica"
+	next "que has"
+	next "completado la"
+	next "nueva #DEX."
+	next "¡Enhorabuena!"
 	db   "@"
 
 PrintDiplomaPage2:
@@ -62,7 +62,7 @@ PrintDiplomaPage2:
 	hlcoord 8, 0
 	call PlaceString
 	ld de, .PlayTime
-	hlcoord 3, 15
+	hlcoord 3, 14
 	call PlaceString
 	hlcoord 12, 15
 	ld de, wGameTimeHours

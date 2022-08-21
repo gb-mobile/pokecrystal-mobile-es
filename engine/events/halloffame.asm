@@ -505,9 +505,9 @@ DisplayHOFMon:
 
 .print_id_no
 	hlcoord 7, 16
-	ld a, "<ID>"
-	ld [hli], a
 	ld a, "№"
+	ld [hli], a
+	ld a, "<ID>"
 	ld [hli], a
 	ld [hl], "/"
 	hlcoord 10, 16
@@ -575,9 +575,9 @@ HOF_AnimatePlayerPic:
 	ld de, wPlayerName
 	call PlaceString
 	hlcoord 1, 6
-	ld a, "<ID>"
-	ld [hli], a
 	ld a, "№"
+	ld [hli], a
+	ld a, "<ID>"
 	ld [hli], a
 	ld [hl], "/"
 	hlcoord 4, 6

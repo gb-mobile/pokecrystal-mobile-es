@@ -16,12 +16,6 @@ PrintBCDNumber::
 	res 7, c
 	res 6, c
 	res 5, c ; c now holds the length
-	bit 5, b
-	jr z, .loop
-	bit 7, b
-	jr nz, .loop ; skip currency symbol
-	ld [hl], "¥"
-	inc hl
 .loop
 	ld a, [de]
 	swap a
@@ -38,15 +32,12 @@ PrintBCDNumber::
 	jr nz, .skipRightAlignmentAdjustment
 	dec hl ; if the string is right-aligned, it needs to be moved back one space
 .skipRightAlignmentAdjustment
-	bit 5, b
-	jr z, .skipCurrencySymbol
-	ld [hl], "¥" ; currency symbol
-	inc hl
-.skipCurrencySymbol
 	ld [hl], "0"
 	call PrintLetterDelay
 	inc hl
 .done
+	ld a, "¥" ; currency symbol
+	ld [hli], a
 	ret
 
 PrintBCDDigit::
@@ -54,15 +45,6 @@ PrintBCDDigit::
 	and a
 	jr z, .zeroDigit
 .nonzeroDigit
-	bit 7, b ; have any non-space characters been printed?
-	jr z, .outputDigit
-; if bit 7 is set, then no numbers have been printed yet
-	bit 5, b ; print the currency symbol?
-	jr z, .skipCurrencySymbol
-	ld [hl], "¥"
-	inc hl
-	res 5, b
-.skipCurrencySymbol
 	res 7, b ; unset 7 to indicate that a nonzero digit has been reached
 .outputDigit
 	add "0"

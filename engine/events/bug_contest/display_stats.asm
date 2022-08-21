@@ -81,10 +81,10 @@ DisplayCaughtContestMonStats:
 
 .Health:	
 db " SALUD@"
-.Stock:
-	db " STOCK <PKMN> @"
-.This:
-	db " THIS <PKMN>  @"
+.Stock:  
+db " GUARDA <PKMN> @"
+.This:   
+db " ESTE <PKMN> @"
 
 SwitchMonText:
 	; Switch #MON?

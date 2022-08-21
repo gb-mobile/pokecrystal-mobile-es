@@ -347,16 +347,16 @@ PlaceEnemysName::
 	cp RIVAL2
 	jr z, .rival
 
-	ld de, wOTClassName
-	call PlaceString
-	ld h, b
-	ld l, c
-	ld de, String_Space
-	call PlaceString
-	push bc
+	push hl
 	callfar Battle_GetTrainerName
 	pop hl
 	ld de, wStringBuffer1
+	call PlaceString
+	ld h, b
+	ld l, c
+	ld a, " "
+	ld [hli], a
+	ld de, wOTClassName
 	jr PlaceCommandCharacter
 
 .rival
@@ -387,14 +387,14 @@ PlaceCommandCharacter::
 	pop de
 	jp NextChar
 
-TMCharText::      db "TM@"
-TrainerCharText:: db "TRAINER@"
-PCCharText::      db "PC@"
-RocketCharText::  db "ROCKET@"
-PlacePOKeText::   db "POKé@"
-KougekiText::     db "こうげき@"
-SixDotsCharText:: db "……@"
-EnemyText::       db "Enemy @"
+TMCharText:      db "MT@"
+TrainerCharText: db "ENTREN.@"
+PCCharText:      db "PC@"
+RocketCharText:  db "ROCKET@"
+PlacePOKeText:   db "POKé@"
+KougekiText:     db "こうげき@"
+SixDotsCharText: db "……@"
+EnemyText:       db "Enem. @"
 PlacePKMNText::   db "<PK><MN>@"
 PlacePOKEText::   db "<PO><KE>@"
 String_Space::    db " @"
@@ -1011,7 +1011,7 @@ TextCommand_LINK_WAIT_BUTTON::
 ; display arrow
 	push hl
 	push bc
-	call ButtonSound
+	call WaitButton
 	pop bc
 	pop hl
 	ret
@@ -1079,11 +1079,11 @@ TextCommand_DAY::
 	dw .Fri
 	dw .Satur
 
-.Sun:    db "SUN@"
-.Mon:    db "MON@"
-.Tues:   db "TUES@"
-.Wednes: db "WEDNES@"
-.Thurs:  db "THURS@"
-.Fri:    db "FRI@"
-.Satur:  db "SATUR@"
-.Day:    db "DAY@"
+.Sun:    db "DOMINGO@"
+.Mon:    db "LUNES@"
+.Tues:   db "MARTES@"
+.Wednes: db "MIÉRCOLES@"
+.Thurs:  db "JUEVES@"
+.Fri:    db "VIERNES@"
+.Satur:  db "SÁBADO@"
+.Day:    db "@"

@@ -1620,7 +1620,7 @@ NEXTU ; d002
 ; poke seer
 wSeerAction:: db
 wSeerNickname:: ds MON_NAME_LENGTH
-wSeerCaughtLocation:: ds 17
+wSeerCaughtLocation:: ds 18
 wSeerTimeOfDay:: ds NAME_LENGTH
 wSeerOTName:: ds NAME_LENGTH
 wSeerOTNameGrammar:: db

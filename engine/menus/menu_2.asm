@@ -97,7 +97,7 @@ DisplayMoneyAndCoinBalance:
 	hlcoord 6, 3
 	ld de, CoinString
 	call PlaceString
-	hlcoord 15, 3
+	hlcoord 14, 3
 	ld de, wCoins
 	lb bc, 2, 4
 	call PrintNum
@@ -106,7 +106,7 @@ DisplayMoneyAndCoinBalance:
 MoneyString:
 	db "DIN.@"
 CoinString:
-	db "COIN@"
+	db "FICHAS@"
 ShowMoney_TerminatorString:
 	db "@"
 
@@ -159,7 +159,7 @@ StartMenu_PrintBugContestStatus:
 	hlcoord 1, 5
 	ld de, .Balls_EN
 	call PlaceString
-	hlcoord 8, 5
+	hlcoord 7, 5
 	ld de, wParkBallsRemaining
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
 	call PrintNum
@@ -174,7 +174,7 @@ StartMenu_PrintBugContestStatus:
 	call GetPokemonName
 
 .no_contest_mon
-	hlcoord 8, 1
+	hlcoord 7, 1
 	call PlaceString
 	ld a, [wContestMon]
 	and a

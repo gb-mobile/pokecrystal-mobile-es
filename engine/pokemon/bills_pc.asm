@@ -227,7 +227,7 @@ BillsPCDepositFuncCancel:
 
 BillsPCDepositMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 9, 4, SCREEN_WIDTH - 1, 13
+	menu_coords 11, 4, SCREEN_WIDTH - 1, 13
 	dw .MenuData
 	db 1 ; default option
 
@@ -246,7 +246,7 @@ Unreferenced_BillsPCClearThreeBoxes:
 	call ClearBox
 	hlcoord 0, 4
 	ld b, 10
-	ld c, 9
+	ld c, 11
 	call ClearBox
 	hlcoord 0, 14
 	ld b, 2
@@ -480,7 +480,7 @@ BillsPC_Withdraw:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 9, 4, SCREEN_WIDTH - 1, 13
+	menu_coords 11, 4, SCREEN_WIDTH - 1, 13
 	dw .MenuData
 	db 1 ; default option
 
@@ -690,7 +690,7 @@ _MovePKMNWithoutMail:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 9, 4, SCREEN_WIDTH - 1, 13
+	menu_coords 11, 4, SCREEN_WIDTH - 1, 13
 	dw .MenuData
 	db 1 ; default option
 
@@ -1799,7 +1799,7 @@ DepositPokemon:
 	ld h, b
 	ld de, wStringBuffer1
 	call PlaceString
-	ld a, "!"
+	ld a, "."
 	ld [bc], a
 	ld c, 50
 	call DelayFrames
@@ -1854,7 +1854,7 @@ TryWithdrawPokemon:
 	ld h, b
 	ld de, wStringBuffer1
 	call PlaceString
-	ld a, "!"
+	ld a, "."
 	ld [bc], a
 	ld c, 50
 	call DelayFrames
@@ -1913,7 +1913,7 @@ ReleasePKMN_ByePKMN:
 	call PlaceString
 	ld l, c
 	ld h, b
-	ld [hl], "!"
+	ld [hl], "."
 	ld c, 50
 	call DelayFrames
 	ret

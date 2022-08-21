@@ -171,12 +171,12 @@ GetCaughtLevel:
 .unknown
 	ld de, wSeerCaughtLevelString
 	ld hl, .unknown_level
-	ld bc, 4
+	ld bc, 5
 	call CopyBytes
 	ret
 
 .unknown_level
-	db "???@"
+	db "¿¿??@"
 
 GetCaughtTime:
 	ld a, [wSeerCaughtData]
@@ -224,9 +224,9 @@ GetCaughtLocation:
 	jr z, .fail
 	ld e, a
 	farcall GetLandmarkName
-	ld hl, wStringBuffer1
-	ld de, wSeerCaughtLocation
-	ld bc, 17
+	ld de, wStringBuffer1
+	ld hl, wSeerCaughtLocation
+	call CopyName2
 	call CopyBytes
 	and a
 	ret

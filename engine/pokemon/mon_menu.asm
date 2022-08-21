@@ -380,7 +380,7 @@ TakePartyItem:
 
 GiveTakeItemMenuData:
 	db MENU_SPRITE_ANIMS | MENU_BACKUP_TILES ; flags
-	menu_coords 12, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 11, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .Items
 	db 1 ; default option
 
@@ -549,7 +549,7 @@ MonMailAction:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 12, 10, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 11, 10, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData
 	db 1 ; default option
 

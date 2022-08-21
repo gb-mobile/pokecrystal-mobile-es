@@ -53,15 +53,15 @@ InitClock:
 .loop
 	ld hl, Text_WhatTimeIsIt
 	call PrintText
-	hlcoord 3, 7
+	hlcoord 1, 7
 	ld b, 2
-	ld c, 15
+	ld c, 17
 	call Textbox
-	hlcoord 11, 7
+	hlcoord 10, 7
 	ld [hl], $1
-	hlcoord 11, 10
+	hlcoord 10, 10
 	ld [hl], $2
-	hlcoord 4, 9
+	hlcoord 2, 9
 	call DisplayHourOClock
 	ld c, 10
 	call DelayFrames
@@ -169,11 +169,11 @@ SetHour:
 	ld [hl], a
 
 .okay
-	hlcoord 4, 9
+	hlcoord 2, 9
 	ld a, " "
-	ld bc, 15
+	ld bc, 17
 	call ByteFill
-	hlcoord 4, 9
+	hlcoord 2, 9
 	call DisplayHourOClock
 	call WaitBGMap
 	and a
@@ -189,10 +189,20 @@ DisplayHourOClock:
 	ld c, a
 	ld e, l
 	ld d, h
-	call PrintHour
+	push bc
+	call PrintAdjustedHour
+	ld h, d
+	ld l, e
 	inc hl
 	ld de, String_oclock
 	call PlaceString
+	ld d, b
+	ld e, c
+	inc de
+	pop bc
+	call PrintTimeOfDay
+	ld b, d
+	ld c, e
 	pop hl
 	ret
 
@@ -307,13 +317,18 @@ Text_WhatHrs:
 	text_far _OakTimeText3
 	text_asm
 	hlcoord 1, 16
+	ld [hl], "¿"
+	inc hl	
 	call DisplayHourOClock
+	ld a, "?"
+	ld [bc], a
+	inc bc	
 	ld hl, .QuestionMark
 	ret
 
 .QuestionMark:
 	; ?
-	text_far _OakTimeText4
+	;text_far _OakTimeText4
 	text_end
 
 Text_HowManyMinutes:
@@ -328,29 +343,45 @@ Text_WhoaMins:
 	; Whoa!@ @
 	text_far _OakTimeText6
 	text_asm
-	hlcoord 7, 14
+	hlcoord 8, 14
+	ld [hl], "¿"
+	inc hl
 	call DisplayMinutesWithMinString
+	ld a, "?"
+	ld [bc], a
+	inc bc
 	ld hl, .QuestionMark
 	ret
 
 .QuestionMark:
 	; ?
-	text_far _OakTimeText7
+	;text_far _OakTimeText7
 	text_end
 
 OakText_ResponseToSetTime:
 	text_asm
 	decoord 1, 14
+	ld a, "¡"
+	ld [de], a
+	inc de	
 	ld a, [wInitHourBuffer]
 	ld c, a
-	call PrintHour
+	push bc
+	call PrintAdjustedHour
+	ld h, d
+	ld l, e
 	ld [hl], ":"
 	inc hl
 	ld de, wInitMinuteBuffer
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
-	ld b, h
-	ld c, l
+	ld d, h
+	ld e, l
+	inc de
+	pop bc
+	call PrintTimeOfDay
+	ld b, d
+	ld c, e
 	ld a, [wInitHourBuffer]
 	cp MORN_HOUR
 	jr c, .nite
@@ -684,20 +715,21 @@ DebugDisplayTime:
 	ret
 
 PrintHour:
-	ld l, e
-	ld h, d
+	call PrintTimeOfDay
+	inc de
+	call PrintAdjustedHour
+	ret
+	
+PrintTimeOfDay:
 	push bc
+	ld h, d
+	ld l, e
 	call GetTimeOfDayString
 	call PlaceString
-	ld l, c
-	ld h, b
-	inc hl
+	ld d, b
+	ld e, c
 	pop bc
-	call AdjustHourForAMorPM
-	ld [wDeciramBuffer], a
-	ld de, wDeciramBuffer
-	call PrintTwoDigitNumberRightAlign
-	ret
+	ret	
 
 GetTimeOfDayString:
 	ld a, c
@@ -720,6 +752,19 @@ GetTimeOfDayString:
 .nite_string: db "NOCH@"
 .morn_string: db "MAÑ@"
 .day_string:  db "DÍA@"
+
+PrintAdjustedHour:
+	push bc
+	call AdjustHourForAMorPM
+	ld [wDeciramBuffer], a
+	ld h, d
+	ld l, e
+	ld de, wDeciramBuffer
+	call PrintTwoDigitNumberRightAlign
+	ld d, h
+	ld e, l
+	pop bc
+	ret
 
 AdjustHourForAMorPM:
 ; Convert the hour stored in c (0-23) to a 1-12 value

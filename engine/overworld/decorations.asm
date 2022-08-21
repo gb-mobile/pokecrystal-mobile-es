@@ -37,7 +37,7 @@ _PlayerDecorationMenu:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 5, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	menu_coords 4, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -521,34 +521,34 @@ GetDecoName:
 	jr .getdeconame
 
 .bed
-	call .plant
 	ld a, _BED
-	jr .getdeconame
+	jr .unused
 
 .carpet
-	call .plant
 	ld a, _CARPET
-	jr .getdeconame
+	jr .unused
 
 .poster
-	ld a, e
-	call .getpokename
-	ld a, _POSTER
-	jr .getdeconame
-
-.doll
-	ld a, e
-	call .getpokename
-	ld a, _DOLL
-	jr .getdeconame
-
-.bigdoll
 	push de
-	ld a, BIG_
+	ld a, _POSTER
 	call .getdeconame
 	pop de
 	ld a, e
 	jr .getpokename
+
+.doll
+	push de
+	ld a, _DOLL
+	call .getdeconame
+	pop de
+	ld a, e
+	jr .getpokename
+
+.bigdoll
+	ld a, e
+	call .getpokename
+	ld a, BIG_
+	jr .getdeconame
 
 .unused
 	push de
@@ -872,7 +872,7 @@ QueryWhichSide:
 
 MenuHeader_0x26eab:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 0, 13, 7
+	menu_coords 0, 0, 12, 7
 	dw MenuData_0x26eb3
 	db 1 ; default option
 

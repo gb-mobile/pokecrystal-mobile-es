@@ -334,7 +334,7 @@ Function104b49:
 	ldh a, [hPrintNumBuffer]
 	cp $96
 	jp nz, Function104d32
-	ld a, $90
+	ld a, $96
 	ldh [hPrintNumBuffer], a
 	call Function104d38
 	ret nz
@@ -380,7 +380,7 @@ Function104b88:
 	cp $6c
 	ret nz
 	ldh a, [hPrintNumBuffer]
-	cp $90
+	cp $96
 	jp nz, Function104d32
 	call Function104d38
 	ret nz

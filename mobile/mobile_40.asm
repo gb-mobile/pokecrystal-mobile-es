@@ -6518,7 +6518,7 @@ Function102e07:
 	ret
 
 .waiting
-	db "Waiting...!@"
+	db "¡ESPERA.…!@"
 
 Function102e3e:
 	ld de, .CANCEL
@@ -6615,8 +6615,8 @@ Function102ee7:
 	ret
 
 String_102ef4:
-	db   "Too bad! The trade"
-	next "was canceled!"
+	db   "¡Mal! ¡El trato"
+	next "está cancelado!"
 	db   "@"
 
 Function102f15:
@@ -6639,7 +6639,7 @@ Function102f32:
 	ret
 
 .TradeCompleted:
-	db "Trade completed!@"
+	db "TRATO COMPLETADO@"
 
 Function102f50:
 	call Function102dc3

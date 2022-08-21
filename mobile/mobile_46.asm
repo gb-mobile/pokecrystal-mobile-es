@@ -4457,27 +4457,27 @@ String_119d07:
 	db "   ▼@"
 
 Strings_L10ToL100:
-	db " L:10 @@"
-	db " L:20 @@"
-	db " L:30 @@"
-	db " L:40 @@"
-	db " L:50 @@"
-	db " L:60 @@"
-	db " L:70 @@"
-	db " L:80 @@"
-	db " L:90 @@"
-	db " L:100@@"
-	db "CANCEL@@"
+	db " N:10 @@"
+	db " N:20 @@"
+	db " N:30 @@"
+	db " N:40 @@"
+	db " N:50 @@"
+	db " N:60 @@"
+	db " N:70 @@"
+	db " N:80 @@"
+	db " N:90 @@"
+	db " N:100@@"
+	db "SALIR @@"
 
 Strings_Ll0ToL40:
-	db " L:10 @@"
-	db " L:20 @@"
-	db " L:30 @@"
-	db " L:40 @@"
-	db "CANCEL@@"
+	db " N:10 @@"
+	db " N:20 @@"
+	db " N:30 @@"
+	db " N:40 @@"
+	db " SALIR@@"
 
 String_119d8c:
-	db "CANCEL@"
+	db " SALIR@@"
 
 ; to clear the cancel text, japanese version does not require this
 String_blank:
@@ -5106,13 +5106,13 @@ BattleTowerRoomMenu2_PlaceYesNoMenu:
 	call MenuBox
 	call MenuBoxCoord2Tile
 	call ApplyTilemap
-	hlcoord 16, 8
+	hlcoord 17, 8
 	ld de, String_11a2cf
 	call PlaceString
-	hlcoord 16, 10
+	hlcoord 17, 10
 	ld de, String_11a2d3
 	call PlaceString
-	hlcoord 15, 8
+	hlcoord 16, 8
 	ld a, $ed
 	ld [hl], a
 	xor a
@@ -5147,10 +5147,10 @@ BattleTowerRoomMenu2_UpdateYesNoMenu:
 	jr z, .asm_11a24c
 	xor a
 	ld [wMobileInactivityTimerMinutes], a
-	hlcoord 15, 8
+	hlcoord 16, 8
 	ld a, $ed
 	ld [hl], a
-	hlcoord 15, 10
+	hlcoord 16, 10
 	ld a, $7f
 	ld [hl], a
 	jr .asm_11a24c
@@ -5164,10 +5164,10 @@ BattleTowerRoomMenu2_UpdateYesNoMenu:
 	jr nz, .asm_11a24c
 	inc a
 	ld [wMobileInactivityTimerMinutes], a
-	hlcoord 15, 8
+	hlcoord 16, 10
 	ld a, $7f
 	ld [hl], a
-	hlcoord 15, 10
+	hlcoord 16, 10
 	ld a, $ed
 	ld [hl], a
 	jr .asm_11a24c
@@ -5208,20 +5208,20 @@ BattleTowerRoomMenu2_UpdateYesNoMenu:
 	ret
 
 String_11a2cf:
-	db "YES@"
+	db "SÍ@"
 
 String_11a2d3:
 	db "NO@"
 
 MenuHeader_11a2d6:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 14, 6, SCREEN_WIDTH - 1, 10
+	menu_coords 15, 6, SCREEN_WIDTH - 1, 10
 	dw NULL
 	db 0 ; default option
 
 MenuHeader_11a2de:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 15, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
 	db 0 ; default option
 

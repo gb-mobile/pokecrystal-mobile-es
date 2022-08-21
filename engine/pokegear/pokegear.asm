@@ -2487,12 +2487,12 @@ Pokedex_GetArea:
 	ld a, $07
 	call ByteFill
 	ld [hl], $17
-	call GetPokemonName
-	hlcoord 2, 0
-	call PlaceString
-	ld h, b
-	ld l, c
+	hlcoord 1, 0
 	ld de, .String_SNest
+	call PlaceString
+	push bc
+	call GetPokemonName
+	pop hl
 	call PlaceString
 	ret
 
