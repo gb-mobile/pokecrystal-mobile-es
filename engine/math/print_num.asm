@@ -11,6 +11,18 @@ _PrintNum::
 
 	push bc
 
+	bit 5, b
+	jr z, .main
+	bit 7, b
+	jr nz, .moneyflag
+	bit 6, b
+	jr z, .main
+
+.moneyflag ; 101xxxxx or 011xxxxx
+	ld a, "¥"
+	ld [hli], a
+	res 5, b ; 100xxxxx or 010xxxxx
+
 .main
 	xor a
 	ldh [hPrintNumBuffer + 0], a
@@ -139,12 +151,13 @@ _PrintNum::
 	ld b, a
 	ldh a, [hPrintNumBuffer + 0]
 	or c
-	ldh [hPrintNumBuffer + 0], a
 	jr nz, .money
 	call .PrintLeadingZero
 	jr .money_leading_zero
 
 .money
+	call .PrintYen
+	push af
 	ld a, "0"
 	add c
 	ld [hl], a
@@ -158,9 +171,14 @@ _PrintNum::
 
 .money_leading_zero
 	call .AdvancePointer
+	call .PrintYen
 	ld a, "0"
 	add b
 	ld [hli], a
+
+	pop de
+	pop bc
+	ret
 
 .PrintYen:
 	push af
@@ -171,10 +189,10 @@ _PrintNum::
 	jr z, .stop
 	ld a, "¥"
 	ld [hli], a
+	res 5, d
 
 .stop
-	pop de
-	pop bc
+	pop af
 	ret
 
 .PrintDigit:
@@ -242,6 +260,14 @@ _PrintNum::
 	ldh a, [hPrintNumBuffer + 0]
 	or c
 	jr z, .PrintLeadingZero
+	ldh a, [hPrintNumBuffer + 0]
+	and a
+	jr nz, .done
+	bit 5, d
+	jr z, .done
+	ld a, "¥"
+	ld [hli], a
+	res 5, d
 .done
 	ld a, "0"
 	add c
