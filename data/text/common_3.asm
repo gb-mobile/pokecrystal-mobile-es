@@ -959,9 +959,11 @@ UnknownText_0x1c564a::
 	done
 
 UnknownText_0x1c5660::
+	text "¡@"
 	text_ram wMonOrItemNameBuffer
-	text " learned"
-	line "@"
+	text_start
+	line "ha aprendido"
+	cont "@"
 	text_ram wStringBuffer2
 	text "!@"
 	sound_dex_fanfare_50_79
@@ -1255,10 +1257,13 @@ UnknownText_0x1c5b38::
 	prompt
 
 UnknownText_0x1c5b53::
+	text "Registrados en la"
+	line "#DEX los datos"
+
+	para "de @"
 	text_ram wEnemyMonNick
-	text "'s data"
-	line "was newly added to"
-	cont "the #DEX.@"
+	text "."
+	line "@"
 	sound_slot_machine_start
 	text_waitbutton
 	text_end
@@ -1425,23 +1430,24 @@ UnknownText_0x1c5e3a::
 	prompt
 
 UnknownText_0x1c5e68::
-	text "<PLAYER> usó@"
-	text_low
+	text "<PLAYER> usó"
+	line "@"
 	text_ram wStringBuffer2
 	text "."
 	done
 
 UnknownText_0x1c5e7b::
-	text "<PLAYER> got on the@"
+	text "<PLAYER> se montó@"
 	text_low
+	text "en la @"
 	text_ram wStringBuffer2
 	text "."
 	prompt
 
 UnknownText_0x1c5e90::
-	text "<PLAYER> got off@"
+	text "<PLAYER> se bajó de@"
 	text_low
-	text "the @"
+	text "la @"
 	text_ram wStringBuffer2
 	text "."
 	prompt
