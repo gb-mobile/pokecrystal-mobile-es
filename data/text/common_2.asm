@@ -121,20 +121,24 @@ Text_StringBuffer2ExpPoints::
 	prompt
 
 Text_GoMon::
-	text "¡Adelante,@"
+	text "¡Adelante,"
+	line "@"
 	text_end
 
 Text_DoItMon::
-	text "¡Hazlo,@"
+	text "¡Hazlo,"
+	line "@"
 	text_end
 
 Text_GoForItMon::
-	text "¡Adelante,@"
+	text "¡Adelante,"
+	line "@"
 	text_end
 
 Text_YourFoesWeakGetmMon::
 	text "¡Tu enemigo está"
-	line "débil! ¡A por él,@"
+	line "débil! ¡A por él,"
+	cont "@"
 	text_end
 
 Text_BattleMonNick01::
@@ -696,13 +700,13 @@ UnknownText_0x1c0cc6::
 	text "¡@"
 	text_ram wStringBuffer2
 	text " de"
-	line "<USER>"
+	line "<USER>@"
 
 	text_end ; unused
 
 UnknownText_0x1c0cd0::
 	text_pause
-	text "<SCROLL>subió mucho!@"
+	text "<SCROLL>subió mucho!"
 	text_end
 	prompt
 
@@ -715,13 +719,13 @@ UnknownText_0x1c0ceb::
 	text "¡@"
 	text_ram wStringBuffer2
 	text " de"
-	line "<TARGET>"
+	line "<TARGET>@"
 
 	text_end ; unused
 
 UnknownText_0x1c0cf5::
 	text_pause
-	text "<SCROLL>bajó mucho!@"
+	text "<SCROLL>bajó mucho!"
 	text_end
 	prompt
 
@@ -765,7 +769,7 @@ UnknownText_0x1c0d6c::
 	prompt
 
 _ActorNameText::
-	text "<USER>@"
+	text "¡<USER>@"
 	text_end
 
 _UsedMove1Text::
@@ -820,9 +824,11 @@ UnknownText_0x1c0db8::
 	done
 
 UnknownText_0x1c0dba::
+	text "¡@"
 	text_ram wStringBuffer1
-	text " came"
-	line "out of its EGG!@"
+	text_start
+	line "salió del"
+	cont "HUEVO!@"
 	sound_caught_mon
 	text_waitbutton
 	text_end
@@ -1090,14 +1096,15 @@ UnknownText_0x1c1203::
 	prompt
 
 UnknownText_0x1c123a::
-	text "CURRENT RECORD"
+	text "RÉCORD ACTUAL"
 
 	para "@"
 	text_ram wStringBuffer1
-	text " caught by"
-	line "@"
+	text " cm,"
+	line "fue atrapado por"
+	cont "@"
 	text_ram wMagikarpRecordHoldersName
-	text_waitbutton
+	text_linkwaitbutton
 	text_end
 
 	text_end ; unused
